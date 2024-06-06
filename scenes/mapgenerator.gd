@@ -175,6 +175,21 @@ func spawn_tiles():
 	var cells = []
 	for x in range(width):
 		for y in range(height):
+			# Define the positions where you want to set the terrain cells
+			var positions = [
+				Vector2(x * 2, y * 2),
+				Vector2(x * 2 + 1, y * 2),
+				Vector2(x * 2, y * 2 + 1),
+				Vector2(x * 2 + 1, y * 2 + 1)
+			]
+			# All positions will have the same terrain type (0)
+			var terrain_set = 0
+			
+			# Assuming no flipping or transposing is required
+			var flip_bits = 0
+			var transpose_bits = 0
+			var rotation_bits = 0
+
 			match grid[x][y]:
 				Tiles.empty:
 					cells.append(Vector2(x, y))
@@ -185,7 +200,7 @@ func spawn_tiles():
 				Tiles.dirt:
 					cells.append(Vector2(x, y))
 					print("Placing floor tile at: %s, " % x, y)  # Debug print
-					dirt_tilemap.set_cells_terrain_connect(0, cells, 0, 0)
+					dirt_tilemap.set_cells_terrain_connect(terrain_set, positions, flip_bits, transpose_bits, rotation_bits)
 				Tiles.wall:
 					cells.append(Vector2(x, y))
 					print("Placing floor tile at: %s, " % x, y)  # Debug print
