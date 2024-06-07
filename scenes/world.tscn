@@ -1753,5 +1753,6 @@ tile_set = SubResource("TileSet_pdgsh")
 format = 2
 
 [node name="PathTileMap" type="TileMap" parent="."]
+z_index = -1
 tile_set = SubResource("TileSet_oe8w1")
 format = 2
