@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var dirt_tilemap = $DirtTileMap
 @onready var wall_tilemap = $CliffTileMap
+@onready var floor_tilemap = $FloorTileMap
 
 var rng = RandomNumberGenerator.new()
 
@@ -173,20 +174,23 @@ func remove_diagonals(tile_index):
 func spawn_tiles():
 	var walls = []
 	var dirt = []
+	var floors = []
 	for x in range(width):
 		for y in range(height):
 			match grid[x][y]:
 				Tiles.EMPTY:
-					walls.append(Vector2(x, y))
-					print("Placing EMPTY tile at: %s, " % x, y)  # Debug print
+					walls.append(Vector2i(x, y))
+					print("Placing empty tile at: %s, " % x, y)  # Debug print
 				Tiles.FLOOR:
-					pass
+					floors.append(Vector2i(x, y))
 				Tiles.DIRT:
-					dirt.append(Vector2(x, y))
-					print("Placing DIRT tile at: %s, " % x, y)  # Debug print
+					dirt.append(Vector2i(x, y))
+					floors.append(Vector2i(x, y))
+					print("Placing dirt tile and path tile at: %s, " % x, y)  # Debug print
 				Tiles.WALL:
-					walls.append(Vector2(x, y))
+					walls.append(Vector2i(x, y))
 					print("Placing wall tile at: %s, " % x, y)  # Debug print
+	floor_tilemap.set_cells_terrain_connect(0, floors, 0, 0)
 	dirt_tilemap.set_cells_terrain_connect(0, dirt, 0, 0, false)
 	wall_tilemap.set_cells_terrain_connect(0, walls, 0, 0)
 
@@ -196,6 +200,7 @@ func clear_tilemaps():
 
 func generate_map():
 	rng.randomize()
+	#rng.seed = 50
 	init_walkers()
 	init_grid()
 	clear_tilemaps()
@@ -207,4 +212,5 @@ func generate_map():
 	spawn_tiles()
 
 func _ready():
+	print("test")
 	generate_map()
