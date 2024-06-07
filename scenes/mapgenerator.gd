@@ -7,8 +7,8 @@ extends Node2D
 var rng = RandomNumberGenerator.new()
 
 var cell_size = Vector2(32, 32)
-var width = (1024 / cell_size.x)
-var height = (768 / cell_size.y)
+var width = (1280 / cell_size.x)
+var height = (736 / cell_size.y)
 var grid = []
 var walkers = []
 
