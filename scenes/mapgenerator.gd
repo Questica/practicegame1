@@ -20,7 +20,7 @@ var max_iterations = 100000
 var walker_max_count = 3
 var walker_spawn_chance = 0.25
 var walker_direction_chance = 0.5
-var fill_percent = 0.3
+var fill_percent = 0.45
 var walker_destroy_chance = 0.2
 
 var neighbors4 = [ [1, 0], [-1, 0], [0, 1], [0, -1]]
@@ -172,31 +172,24 @@ func remove_diagonals(tile_index):
 					grid[position.x][position.y] = Tiles.floor
 
 func spawn_tiles():
-	var cells = []
+	var walls = []
+	var dirt = []
 	for x in range(width):
 		for y in range(height):
-			
-			var positions = [
-				Vector2(x * 2, y * 2),
-				Vector2(x * 2 + 1, y * 2),
-				Vector2(x * 2, y * 2 + 1),
-				Vector2(x * 2 + 1, y * 2 + 1)
-			]
-			
 			match grid[x][y]:
 				Tiles.empty:
-					cells.append(Vector2(x, y))
+					walls.append(Vector2(x, y))
 					print("Placing empty tile at: %s, " % x, y)  # Debug print
-					#wall_tilemap.set_cells_terrain_connect(0, cells, 0, 0)
 				Tiles.floor:
 					pass
 				Tiles.dirt:
+					dirt.append(Vector2(x, y))
 					print("Placing dirt tile at: %s, " % x, y)  # Debug print
-					dirt_tilemap.set_cells_terrain_connect(0, positions, 0, 0, 0)
 				Tiles.wall:
-					cells.append(Vector2(x, y))
+					walls.append(Vector2(x, y))
 					print("Placing wall tile at: %s, " % x, y)  # Debug print
-					wall_tilemap.set_cells_terrain_connect(0, cells, 0, 0)
+	dirt_tilemap.set_cells_terrain_connect(0, dirt, 0, 0, 0)
+	wall_tilemap.set_cells_terrain_connect(0, walls, 0, 0)
 
 func clear_tilemaps():
 	dirt_tilemap.clear()
