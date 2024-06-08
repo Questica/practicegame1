@@ -16,7 +16,6 @@ func _ready():
 func _process(delta):
 	key_pan(delta)
 	mouse_pan(delta)
-	print(backgroundsize)
 
 func key_pan(delta):
 	var pan_amount = Vector2.ZERO
