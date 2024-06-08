@@ -1301,6 +1301,7 @@ sources/1 = SubResource("TileSetAtlasSource_5buxn")
 script = ExtResource("1_klphd")
 
 [node name="Background" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 z_index = -1
 texture_repeat = 2
 position = Vector2(640, 368)
@@ -1322,3 +1323,4 @@ tile_set = SubResource("TileSet_oe8w1")
 format = 2
 
 [node name="Camera2D" parent="." instance=ExtResource("6_vxgmc")]
+limit_left = 0
