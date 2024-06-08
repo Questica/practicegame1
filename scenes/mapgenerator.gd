@@ -3,8 +3,8 @@ extends Node2D
 @onready var dirt_tilemap = $DirtTileMap
 @onready var wall_tilemap = $CliffTileMap
 @onready var floor_tilemap = $FloorTileMap
-@onready var map_y = ((height * 32) * 2) - 32
-@onready var map_x = ((width * 32) * 2) - 32
+@onready var map_y = (height * 64) - 32
+@onready var map_x = (width * 64) - 32
 
 @export var height : int
 @export var width : int
