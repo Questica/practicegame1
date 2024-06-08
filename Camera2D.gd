@@ -3,15 +3,9 @@ extends Camera2D
 @onready var camera = self
 @onready var mouse_pos
 @onready var screen_size = get_viewport().size
-@onready var background = %Background
-@onready var backgroundsize = background.region_rect.size
 
 @export var speed = 420.0
 @export var edge_pan_margin = 50
-
-func _ready():
-	camera.limit_bottom = backgroundsize.y
-	camera.limit_right = backgroundsize.x
 
 func _process(delta):
 	key_pan(delta)
