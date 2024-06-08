@@ -3,12 +3,15 @@ extends Node2D
 @onready var dirt_tilemap = $DirtTileMap
 @onready var wall_tilemap = $CliffTileMap
 @onready var floor_tilemap = $FloorTileMap
+@onready var background = %Background
+
+@export var width : int = 40
+@export var height : int = 23
 
 var rng = RandomNumberGenerator.new()
 
-var cell_size = Vector2(32, 32)
-var width = (1280 / cell_size.x)
-var height = (736 / cell_size.y)
+const cell_size = Vector2(32, 32)
+var map_size = Vector2(width * 32, height * 32)
 var grid = []
 var walkers = []
 
@@ -213,4 +216,5 @@ func generate_map():
 
 func _ready():
 	print("test")
+	background.region_rect.size = map_size
 	generate_map()
