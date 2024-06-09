@@ -49,6 +49,7 @@ func _on_slot_mouse_entered(a_Slot):
 	if item_held:
 		check_slot_availability(current_slot)
 		set_grids.call_deferred(current_slot)
+
 	
 func _on_slot_mouse_exited(a_Slot):
 	clear_grid()
@@ -58,7 +59,8 @@ func _on_slot_mouse_exited(a_Slot):
 
 func _on_button_spawn_pressed():
 	var new_item = item_scene.instantiate()
-	add_child(new_item)
+	get_node("TextureRect").add_child(new_item)
+	#new_item.load_item(4)
 	new_item.load_item(randi_range(1,4))    #randomize this for different items to spawn
 	new_item.selected = true
 	item_held = new_item
@@ -116,10 +118,14 @@ func place_item():
 	#for changing scene tree
 	item_held.get_parent().remove_child(item_held)
 	grid_container.add_child(item_held)
-	item_held.global_position = get_global_mouse_position()
+	#item_held.global_position = get_global_mouse_position()
 	####
 	var calculated_grid_id = current_slot.slot_ID + icon_anchor.x * col_count + icon_anchor.y
 	item_held._snap_to(grid_array[calculated_grid_id].global_position)
+	#print(grid_array[calculated_grid_id])
+	#print("test", grid_array[calculated_grid_id].get_global_position())
+	#item_held.global_position = grid_array[calculated_grid_id].get_global_position()
+	#item_held.global_position._set_position(grid_array[calculated_grid_id].get_position())
 	print(calculated_grid_id)
 	item_held.grid_anchor = current_slot
 	for grid in item_held.item_grids:
