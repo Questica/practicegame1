@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var IconRect_path = $Icon
 
+var inventoryScale = 3
 var item_ID : int
 var item_grids := []
 var selected = false
@@ -18,6 +19,7 @@ func _process(delta):
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta)
 
 func load_item(a_ItemID : int) -> void:
+	#a_ItemID = 2
 	#match a_ItemID:
 		#1:
 			#self.set_scale(Vector2(2, 2))
@@ -53,7 +55,8 @@ func set_item_size():
 		if pos[1] < yMin:
 			yMin = pos[1]
 	print("hello")
-	self.set_scale(Vector2(abs(xMax - xMin) + 1, abs(yMax - yMin) + 1))
+	get_node("Icon").set_size(get_node("Icon").get_size()*Vector2(abs(xMax - xMin) + 1, abs(yMax - yMin) + 1))
+	#self.set_scale(Vector2(abs(xMax - xMin) + 1, abs(yMax - yMin) + 1))
 #rotate 90 degress CW
 func rotate_item():
 	for grid in item_grids:
@@ -65,13 +68,18 @@ func rotate_item():
 		rotation_degrees = 0
 
 func _snap_to(destination):
+	var offset = Vector2(0, 0)
 	var tween = get_tree().create_tween()
 	#separate cases to avoid snapping errors
-	if int(rotation_degrees) % 180 == 0:
-		print(IconRect_path.size)
-		#destination += IconRect_path.size/2
-	else:
-		var temp_xy_switch = Vector2(IconRect_path.size.y,IconRect_path.size.x)
-		destination += temp_xy_switch/2
-	tween.tween_property(self, "global_position", destination, 1).set_trans(Tween.TRANS_SINE)
+	
+	match int(rotation_degrees):
+		90:
+			offset = Vector2(IconRect_path.size.y,0)
+		180:
+			offset = Vector2(IconRect_path.size.x,IconRect_path.size.y)
+		270:
+			offset = Vector2(0,IconRect_path.size.x)
+	destination += offset * inventoryScale
+	
+	tween.tween_property(self, "global_position", destination, 0).set_trans(Tween.TRANS_SINE)
 	selected = false
