@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dr5ioa8ttwkth"]
+[gd_scene load_steps=15 format=3 uid="uid://dr5ioa8ttwkth"]
 
 [ext_resource type="Texture2D" uid="uid://cbtgj1wqe8qrm" path="res://assets/world/GrassBackground.png" id="1_jh6xv"]
 [ext_resource type="Script" path="res://scripts/mapgenerator.gd" id="1_klphd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bhxj2aoq1jr0p" path="res://assets/world/CliffTileset.png" id="3_f8x62"]
 [ext_resource type="Texture2D" uid="uid://firx4aap8f8h" path="res://assets/world/FieldsTileset.png" id="5_4ehyi"]
 [ext_resource type="PackedScene" uid="uid://b0jlf7msskj08" path="res://scenes/camera_2d.tscn" id="6_vxgmc"]
+[ext_resource type="PackedScene" uid="uid://bduf14chnme06" path="res://scenes/ui.tscn" id="7_1c0qk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6nqw2"]
 texture = ExtResource("2_p3pnx")
@@ -1325,3 +1326,5 @@ tile_set = SubResource("TileSet_oe8w1")
 format = 2
 
 [node name="Camera2D" parent="." instance=ExtResource("6_vxgmc")]
+
+[node name="UI" parent="." instance=ExtResource("7_1c0qk")]
