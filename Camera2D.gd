@@ -1,16 +1,16 @@
 extends Camera2D
 
 @onready var mouse_pos
-@onready var screen_size = get_viewport().size
-
+var camera_size = Vector2(640, 360)
 @export var speed = 420.0
 @export var edge_pan_margin = 50
 
+
 # Adjust limits by half the screen size
-@onready var adjusted_limit_left = limit_left + screen_size.x / 2
-@onready var adjusted_limit_right = limit_right - screen_size.x / 2
-@onready var adjusted_limit_top = limit_top + screen_size.y / 2
-@onready var adjusted_limit_bottom = limit_bottom - screen_size.y / 2
+@onready var adjusted_limit_left = limit_left + camera_size.x
+@onready var adjusted_limit_right = limit_right - camera_size.x
+@onready var adjusted_limit_top = limit_top + camera_size.y
+@onready var adjusted_limit_bottom = limit_bottom - camera_size.y
 
 func _process(delta):
 	key_pan(delta)
@@ -40,12 +40,12 @@ func mouse_pan(delta):
 	mouse_pos = get_viewport().get_mouse_position()
 	var pan_amount = Vector2.ZERO
 
-	if mouse_pos.x >= screen_size.x - edge_pan_margin:
+	if mouse_pos.x >= camera_size.x - edge_pan_margin:
 		pan_amount.x += 1
 	elif mouse_pos.x <= edge_pan_margin:
 		pan_amount.x -= 1
 	
-	if mouse_pos.y >= screen_size.y - edge_pan_margin + 50:
+	if mouse_pos.y >= camera_size.y - edge_pan_margin + 50:
 		pan_amount.y += 1
 	elif mouse_pos.y <= edge_pan_margin:
 		pan_amount.y -= 1
