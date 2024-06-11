@@ -4,3 +4,7 @@
 
 [node name="PlayerStateMachine" type="Node"]
 script = ExtResource("1_82qrf")
+
+[node name="PlayerBaseState" type="Node" parent="."]
+
+[node name="PlayerActionState" type="Node" parent="."]
