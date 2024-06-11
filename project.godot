@@ -17,12 +17,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DataHandler="*res://scripts/DataHandler.gd"
+DataHandler="*res://scripts/global/DataHandler.gd"
+Events="*res://scripts/global/events.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bpbimw6a21rde"]
+[gd_scene load_steps=12 format=3 uid="uid://bpbimw6a21rde"]
 
 [ext_resource type="Script" path="res://scripts/EnemyTest.gd" id="1_apaqq"]
 [ext_resource type="Texture2D" uid="uid://b1padjs8jwgmi" path="res://assets/characters/Bat.png" id="2_cmfxc"]
@@ -8,6 +8,9 @@
 script = ExtResource("2_ov415")
 max_health = 10
 speed = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0yeyt"]
+radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1bqs"]
 atlas = ExtResource("2_cmfxc")
@@ -58,8 +61,12 @@ stats = SubResource("Resource_85c57")
 
 [node name="Area2D" type="Area2D" parent="."]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_0yeyt")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kh4kn")
 animation = &"flying"
-frame_progress = 0.279824
+frame_progress = 0.353404
