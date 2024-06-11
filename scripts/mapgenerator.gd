@@ -207,8 +207,8 @@ func clear_tilemaps():
 func _draw():
 	for x in floors:
 		draw_box(x)
-	# Draw the grid on the screen
-	#draw_grid()
+	for x in dirt:
+		draw_box(x)
 
 #func draw_grid():
 	## Draw vertical lines for the grid

@@ -1305,7 +1305,7 @@ width = 40
 
 [node name="Background" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-z_index = -1
+z_index = -5
 texture_repeat = 2
 position = Vector2(16, 16)
 texture = ExtResource("1_jh6xv")
@@ -1323,7 +1323,7 @@ tile_set = SubResource("TileSet_pdgsh")
 format = 2
 
 [node name="FloorTileMap" type="TileMap" parent="."]
-z_index = -1
+z_index = -2
 tile_set = SubResource("TileSet_oe8w1")
 format = 2
 
