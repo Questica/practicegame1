@@ -34,7 +34,7 @@ func mouse_pan(delta):
 	elif mouse_pos.x <= edge_pan_margin:
 		pan_amount.x -= 1
 	
-	if mouse_pos.y >= screen_size.y - edge_pan_margin:
+	if mouse_pos.y >= screen_size.y - edge_pan_margin + 50:
 		pan_amount.y += 1
 	elif mouse_pos.y <= edge_pan_margin:
 		pan_amount.y -= 1

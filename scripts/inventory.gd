@@ -146,6 +146,7 @@ func pick_item():
 	#move node in the scene tree
 	item_held.get_parent().remove_child(item_held)
 	add_child(item_held)
+	item_held.set_anchor_center()
 	item_held.global_position = get_global_mouse_position()
 	####
 	

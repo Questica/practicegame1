@@ -221,4 +221,6 @@ func _ready():
 	%Background.region_rect.size.x = map_x
 	$Camera2D.limit_bottom = height * 32
 	$Camera2D.limit_right = width * 32
+	# set the camera position, later we will intialize this to the player's starting position
+	$Camera2D.position = Vector2(320.0, 180.0)
 	generate_map()
