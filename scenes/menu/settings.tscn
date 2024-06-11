@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkhffrn3xv7vj"]
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_k8ybd"]
+[ext_resource type="Theme" uid="uid://cr8rteqxcjyne" path="res://styles/menu.tres" id="1_o55s6"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k8ybd")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="Label" type="Label" parent="VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="resolutionOptions" type="OptionButton" parent="VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "640x360"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+
+[node name="back" type="Button" parent="VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_o55s6")
+text = "Back
+"
+
+[connection signal="item_selected" from="VBoxContainer2/MarginContainer/VBoxContainer/resolutionOptions" to="." method="_on_option_button_item_selected"]
+[connection signal="button_up" from="VBoxContainer2/MarginContainer/VBoxContainer/back" to="." method="_on_back_button_up"]
