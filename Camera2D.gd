@@ -7,10 +7,10 @@ var camera_size = Vector2(640, 360)
 
 
 # Adjust limits by half the screen size
-@onready var adjusted_limit_left = limit_left + camera_size.x
-@onready var adjusted_limit_right = limit_right - camera_size.x
-@onready var adjusted_limit_top = limit_top + camera_size.y
-@onready var adjusted_limit_bottom = limit_bottom - camera_size.y
+@onready var adjusted_limit_left = limit_left + (camera_size.x / 2)
+@onready var adjusted_limit_right = 1280 - (camera_size.x / 2) #limit_right #- (camera_size.x * 2)
+@onready var adjusted_limit_top = limit_top + (camera_size.y / 2)
+@onready var adjusted_limit_bottom = 1280 - (camera_size.y / 2) #limit_bottom #- (camera_size.y * 2)
 
 func _process(delta):
 	key_pan(delta)
