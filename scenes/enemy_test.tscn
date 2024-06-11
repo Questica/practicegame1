@@ -43,7 +43,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"flying",
-"speed": 1.0
+"speed": 0.5
 }]
 
 [node name="EnemyTest" type="CharacterBody2D"]
@@ -53,4 +53,4 @@ script = ExtResource("1_apaqq")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kh4kn")
 animation = &"flying"
-frame_progress = 0.655525
+frame_progress = 0.699234

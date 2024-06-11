@@ -1,6 +1,7 @@
+class_name Enemy
 extends CharacterBody2D
 
-@export var speed = 2
+@export var speed = 1
 
 var player_position
 #get player position?
