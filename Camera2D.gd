@@ -1,11 +1,16 @@
 extends Camera2D
 
-@onready var camera = self
 @onready var mouse_pos
 @onready var screen_size = get_viewport().size
 
 @export var speed = 420.0
 @export var edge_pan_margin = 50
+
+# Adjust limits by half the screen size
+@onready var adjusted_limit_left = limit_left + screen_size.x / 2
+@onready var adjusted_limit_right = limit_right - screen_size.x / 2
+@onready var adjusted_limit_top = limit_top + screen_size.y / 2
+@onready var adjusted_limit_bottom = limit_bottom - screen_size.y / 2
 
 func _process(delta):
 	key_pan(delta)
@@ -24,13 +29,7 @@ func key_pan(delta):
 	
 	pan_amount = pan_amount.normalized()
 	var new_position = position + pan_amount * delta * speed
-	
-	# Adjust limits by half the screen size
-	var adjusted_limit_left = limit_left + screen_size.x / 2
-	var adjusted_limit_right = limit_right - screen_size.x / 2
-	var adjusted_limit_top = limit_top + screen_size.y / 2
-	var adjusted_limit_bottom = limit_bottom - screen_size.y / 2
-	
+
 	# Clamp the new position to the adjusted camera limits
 	new_position.x = clamp(new_position.x, adjusted_limit_left, adjusted_limit_right)
 	new_position.y = clamp(new_position.y, adjusted_limit_top, adjusted_limit_bottom)
@@ -53,13 +52,7 @@ func mouse_pan(delta):
 
 	pan_amount = pan_amount.normalized()
 	var new_position = position + pan_amount * delta * speed
-	
-	# Adjust limits by half the screen size
-	var adjusted_limit_left = limit_left + screen_size.x / 2
-	var adjusted_limit_right = limit_right - screen_size.x / 2
-	var adjusted_limit_top = limit_top + screen_size.y / 2
-	var adjusted_limit_bottom = limit_bottom - screen_size.y / 2
-	
+
 	# Clamp the new position to the adjusted camera limits
 	new_position.x = clamp(new_position.x, adjusted_limit_left, adjusted_limit_right)
 	new_position.y = clamp(new_position.y, adjusted_limit_top, adjusted_limit_bottom)
