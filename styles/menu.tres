@@ -15,7 +15,6 @@ border_color = Color(0, 0.329412, 0.419608, 1)
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
-Button/constants/outline_size = 0
 Button/styles/focus = SubResource("StyleBoxEmpty_gx5gh")
 Button/styles/hover = SubResource("StyleBoxFlat_oqyc7")
 Button/styles/normal = ExtResource("1_jb5h5")

@@ -23,11 +23,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2"]
+[node name="header" type="MarginContainer" parent="VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/margin_top = 50
 
-[node name="Label" type="Label" parent="VBoxContainer2/MarginContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer2/header"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Best Game Ever Made"
