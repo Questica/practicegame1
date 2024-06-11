@@ -69,4 +69,4 @@ shape = SubResource("CircleShape2D_0yeyt")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kh4kn")
 animation = &"flying"
-frame_progress = 0.353404
+frame_progress = 0.556768

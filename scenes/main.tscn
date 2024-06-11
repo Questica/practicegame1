@@ -1,14 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bts8lwcuvewnm"]
+[gd_scene load_steps=3 format=3 uid="uid://bts8lwcuvewnm"]
 
 [ext_resource type="PackedScene" uid="uid://bduf14chnme06" path="res://scenes/ui.tscn" id="1_ixjau"]
 [ext_resource type="PackedScene" uid="uid://dr5ioa8ttwkth" path="res://scenes/world.tscn" id="3_g467k"]
-[ext_resource type="PackedScene" uid="uid://bpbimw6a21rde" path="res://scenes/enemy_test.tscn" id="3_vspy6"]
 
 [node name="Main" type="Node2D"]
 
 [node name="UI" parent="." instance=ExtResource("1_ixjau")]
 
 [node name="MapGenerator" parent="." instance=ExtResource("3_g467k")]
-
-[node name="EnemyTest" parent="." instance=ExtResource("3_vspy6")]
-position = Vector2(308, 180)
