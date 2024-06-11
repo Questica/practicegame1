@@ -38,6 +38,11 @@ enum Tiles {
 	DIRT = 2,
 }
 
+var walls = []
+var dirt = []
+var floors = []
+
+
 func init_walkers():
 	var walker = Walker.new()
 	walker.dir = get_random_direction()
@@ -176,9 +181,6 @@ func remove_diagonals(tile_index):
 					grid[pos.x][pos.y] = Tiles.FLOOR
 
 func spawn_tiles():
-	var walls = []
-	var dirt = []
-	var floors = []
 	for x in range(width):
 		for y in range(height):
 			match grid[x][y]:
@@ -202,6 +204,30 @@ func clear_tilemaps():
 	dirt_tilemap.clear()
 	wall_tilemap.clear()
 
+func _draw():
+	for x in floors:
+		draw_box(x)
+	for x in dirt:
+		draw_box(x)
+
+#func draw_grid():
+	## Draw vertical lines for the grid
+	#for x in grid_size.x + 1:
+		#draw_line(
+			#Vector2(x * cell_size.x, 0),  # Start point of the line
+			#Vector2(x * cell_size.x, grid_size.y * cell_size.y),  # End point of the line
+			#Color.WHITE_SMOKE,  # Color of the line
+			#2.0  # Thickness of the line
+		#)
+	## Draw horizontal lines for the grid
+	#for y in grid_size.y + 1:
+		#draw_line(
+			#Vector2(0, y * cell_size.y),  # Start point of the line
+			#Vector2(grid_size.x * cell_size.x, y * cell_size.y),  # End point of the line
+			#Color.WHITE_SMOKE,  # Color of the line
+			#2.0  # Thickness of the line
+		#)
+
 func generate_map():
 	rng.randomize()
 	#rng.seed = 50
@@ -214,6 +240,39 @@ func generate_map():
 	pad_dirt()
 	remove_diagonals(Tiles.DIRT)
 	spawn_tiles()
+
+func draw_box(box: Vector2):
+	var x = box[0] * cell_size.x
+	var y = box[1] * cell_size.y
+	#TOP LINE
+	draw_line(
+		Vector2(x, y),  # Start point of the line
+		Vector2(x + cell_size.x, y),  # End point of the line
+		Color.WHITE_SMOKE,  # Color of the line
+		2.0  # Thickness of the line
+	)
+	#RIGHT LINE
+	draw_line(
+		Vector2(x + cell_size.x, y),  # Start point of the line
+		Vector2(x + cell_size.x, cell_size.y + y),  # End point of the line
+		Color.WHITE_SMOKE,  # Color of the line
+		2.0  # Thickness of the line
+	)
+	#BOTTOM LINE
+	draw_line(
+		Vector2(x, y + cell_size.y),  # Start point of the line
+		Vector2(x + cell_size.x, y + cell_size.y),  # End point of the line
+		Color.WHITE_SMOKE,  # Color of the line
+		2.0  # Thickness of the line
+	)
+	#LEFT LINE
+	draw_line(
+		Vector2(x, y),  # Start point of the line
+		Vector2(x, cell_size.y + y),  # End point of the line
+		Color.WHITE_SMOKE,  # Color of the line
+		2.0  # Thickness of the line
+	)
+
 
 func _ready():
 	print(map_y)
