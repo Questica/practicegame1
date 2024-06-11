@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkc8vxlpllpd3"]
+
+[ext_resource type="Script" path="res://scripts/EnemyTest.gd" id="1_apaqq"]
+[ext_resource type="Texture2D" uid="uid://b1padjs8jwgmi" path="res://assets/characters/Bat.png" id="2_cmfxc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1bqs"]
+atlas = ExtResource("2_cmfxc")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbo0f"]
+atlas = ExtResource("2_cmfxc")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_800ki"]
+atlas = ExtResource("2_cmfxc")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cwx0"]
+atlas = ExtResource("2_cmfxc")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76jbm"]
+atlas = ExtResource("2_cmfxc")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kh4kn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1bqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbo0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_800ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cwx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76jbm")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 1.0
+}]
+
+[node name="EnemyTest" type="CharacterBody2D"]
+script = ExtResource("1_apaqq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kh4kn")
+animation = &"flying"
+frame_progress = 0.655525
