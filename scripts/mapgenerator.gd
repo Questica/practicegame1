@@ -216,14 +216,13 @@ func _draw():
 	# Draw the grid on the screen
 	draw_grid()
 
-
 func draw_grid():
 	# Draw vertical lines for the grid
 	for x in grid_size.x + 1:
 		draw_line(
 			Vector2(x * cell_size.x, 0),  # Start point of the line
 			Vector2(x * cell_size.x, grid_size.y * cell_size.y),  # End point of the line
-			Color.DARK_GRAY,  # Color of the line
+			Color.WHITE_SMOKE,  # Color of the line
 			2.0  # Thickness of the line
 		)
 	# Draw horizontal lines for the grid
@@ -231,7 +230,7 @@ func draw_grid():
 		draw_line(
 			Vector2(0, y * cell_size.y),  # Start point of the line
 			Vector2(grid_size.x * cell_size.x, y * cell_size.y),  # End point of the line
-			Color.DARK_GRAY,  # Color of the line
+			Color.WHITE_SMOKE,  # Color of the line
 			2.0  # Thickness of the line
 		)
 
