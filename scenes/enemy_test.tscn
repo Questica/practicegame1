@@ -53,4 +53,4 @@ script = ExtResource("1_apaqq")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kh4kn")
 animation = &"flying"
-frame_progress = 0.699234
+frame_progress = 0.279824

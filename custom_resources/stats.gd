@@ -4,6 +4,7 @@ extends Resource
 signal stats_changed
 
 @export var max_health := 1
+@export var speed = 1
 
 var health: int : set = set_health
 

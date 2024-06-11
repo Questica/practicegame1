@@ -1,10 +1,13 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export var speed = 1
+@export var stats: Stats : set = set_stats
 
 var player_position
 #get player position?
+
+func set_stats(value: Stats) -> void:
+	stats = value.create_instance()
 
 func _process(delta):
 	#intialize player position
