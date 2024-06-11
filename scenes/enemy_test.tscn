@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkc8vxlpllpd3"]
+[gd_scene load_steps=11 format=3 uid="uid://bpbimw6a21rde"]
 
 [ext_resource type="Script" path="res://scripts/EnemyTest.gd" id="1_apaqq"]
 [ext_resource type="Texture2D" uid="uid://b1padjs8jwgmi" path="res://assets/characters/Bat.png" id="2_cmfxc"]
+[ext_resource type="Script" path="res://custom_resources/stats.gd" id="2_ov415"]
+
+[sub_resource type="Resource" id="Resource_85c57"]
+script = ExtResource("2_ov415")
+max_health = 10
+speed = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1bqs"]
 atlas = ExtResource("2_cmfxc")
@@ -48,6 +54,9 @@ animations = [{
 
 [node name="EnemyTest" type="CharacterBody2D"]
 script = ExtResource("1_apaqq")
+stats = SubResource("Resource_85c57")
+
+[node name="Area2D" type="Area2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

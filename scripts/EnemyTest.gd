@@ -15,7 +15,7 @@ func _process(delta):
 	
 	if position.distance_to(player_position) > 1:
 		var direction = (player_position - position).normalized()
-		velocity = direction * speed
+		velocity = direction * stats.speed
 		move_and_slide()
 	
 	$AnimatedSprite2D.play("flying")
