@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpmfjpw1bsjeh"]
+[gd_scene load_steps=3 format=3 uid="uid://b1l66y5wx0dgs"]
 
-[ext_resource type="Theme" path="res://styles/menu.tres" id="1_0nmw1"]
+[ext_resource type="Theme" uid="uid://cr8rteqxcjyne" path="res://styles/menu.tres" id="1_0nmw1"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_8uywu"]
 
 [node name="menu" type="Control"]

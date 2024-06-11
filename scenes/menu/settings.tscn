@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b07aw3u0vce6o"]
+[gd_scene load_steps=3 format=3 uid="uid://bkhffrn3xv7vj"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_k8ybd"]
-[ext_resource type="Theme" path="res://styles/menu.tres" id="1_o55s6"]
+[ext_resource type="Theme" uid="uid://cr8rteqxcjyne" path="res://styles/menu.tres" id="1_o55s6"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3

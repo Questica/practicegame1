@@ -15,8 +15,6 @@ var icon_anchor : Vector2
 func _ready():
 	for i in range(16):
 		create_slot()
-	
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,6 +36,7 @@ func create_slot():
 	new_slot.slot_ID = grid_array.size()
 	grid_container.add_child(new_slot)
 	grid_array.push_back(new_slot)
+	new_slot.set_color(new_slot.States.DEFAULT)
 	new_slot.slot_entered.connect(_on_slot_mouse_entered)
 	new_slot.slot_exited.connect(_on_slot_mouse_exited)
 	pass
