@@ -13,8 +13,6 @@ var adjusted_limit_bottom : int
 
 func _ready() -> void:
 	map_size = $"..".camera_setup()
-	#limit_right = map_size[0] * 32
-	#limit_bottom = map_size[1] * 32
 	adjusted_limit_left = limit_left + (camera_size.x / 2)
 	adjusted_limit_right = map_size[0] * 32 - (camera_size.x / 2)
 	adjusted_limit_top = limit_top + (camera_size.y / 2)
@@ -56,7 +54,7 @@ func mouse_pan(delta):
 	elif mouse_pos.x <= edge_pan_margin:
 		pan_amount.x -= 1
 	
-	if mouse_pos.y >= camera_size.y - edge_pan_margin + 50:
+	if mouse_pos.y >= camera_size.y - edge_pan_margin + 45:
 		pan_amount.y += 1
 	elif mouse_pos.y <= edge_pan_margin:
 		pan_amount.y -= 1
