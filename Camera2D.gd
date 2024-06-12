@@ -13,12 +13,12 @@ var adjusted_limit_bottom : int
 
 func _ready() -> void:
 	map_size = $"..".camera_setup()
-	limit_right = map_size[0] * 32
-	limit_bottom = map_size[1] * 32
+	#limit_right = map_size[0] * 32
+	#limit_bottom = map_size[1] * 32
 	adjusted_limit_left = limit_left + (camera_size.x / 2)
-	adjusted_limit_right = limit_right - (camera_size.x / 2)
+	adjusted_limit_right = map_size[0] * 32 - (camera_size.x / 2)
 	adjusted_limit_top = limit_top + (camera_size.y / 2)
-	adjusted_limit_bottom = limit_bottom - (camera_size.y / 2)
+	adjusted_limit_bottom = map_size[1] * 32 - (camera_size.y / 2)
 
 	# set the camera position, later we will intialize this to the player's starting position
 	position = Vector2(320.0, 180.0)

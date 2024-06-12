@@ -32,7 +32,6 @@ func _on_back_button_up():
 	
 
 
-
 func _on_resolution_button_up():
 	get_tree().change_scene_to_file("res://scenes/menu/resolution.tscn")
 	
