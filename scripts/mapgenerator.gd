@@ -275,11 +275,9 @@ func draw_box(box: Vector2):
 
 
 func _ready():
-	print(map_y)
 	%Background.region_rect.size.y = map_y
 	%Background.region_rect.size.x = map_x
-	$Camera2D.limit_bottom = height * 32
-	$Camera2D.limit_right = width * 32
-	# set the camera position, later we will intialize this to the player's starting position
-	$Camera2D.position = Vector2(320.0, 180.0)
 	generate_map()
+
+func camera_setup() -> Vector2:
+	return Vector2(width, height)

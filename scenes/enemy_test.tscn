@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bl6fhtsr5cwrq"]
 
 [ext_resource type="Script" path="res://scripts/EnemyTest.gd" id="1_apaqq"]
-[ext_resource type="Texture2D" path="res://assets/characters/Bat.png" id="2_cmfxc"]
+[ext_resource type="Texture2D" uid="uid://b1padjs8jwgmi" path="res://assets/characters/Bat.png" id="2_cmfxc"]
 [ext_resource type="Script" path="res://custom_resources/stats.gd" id="2_ov415"]
 
 [sub_resource type="Resource" id="Resource_85c57"]

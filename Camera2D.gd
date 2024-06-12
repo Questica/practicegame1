@@ -2,15 +2,26 @@ extends Camera2D
 
 @onready var mouse_pos
 var camera_size = Vector2(640, 360)
+var map_size : Vector2
 @export var speed = 420.0
 @export var edge_pan_margin = 50
 
+var adjusted_limit_left : int
+var adjusted_limit_right : int
+var adjusted_limit_top : int
+var adjusted_limit_bottom : int
 
-# Adjust limits by half the screen size
-@onready var adjusted_limit_left = limit_left + (camera_size.x / 2)
-@onready var adjusted_limit_right = 1280 - (camera_size.x / 2) #limit_right #- (camera_size.x * 2)
-@onready var adjusted_limit_top = limit_top + (camera_size.y / 2)
-@onready var adjusted_limit_bottom = 1280 - (camera_size.y / 2) #limit_bottom #- (camera_size.y * 2)
+func _ready() -> void:
+	map_size = $"..".camera_setup()
+	limit_right = map_size[0] * 32
+	limit_bottom = map_size[1] * 32
+	adjusted_limit_left = limit_left + (camera_size.x / 2)
+	adjusted_limit_right = limit_right - (camera_size.x / 2)
+	adjusted_limit_top = limit_top + (camera_size.y / 2)
+	adjusted_limit_bottom = limit_bottom - (camera_size.y / 2)
+
+	# set the camera position, later we will intialize this to the player's starting position
+	position = Vector2(320.0, 180.0)
 
 func _process(delta):
 	key_pan(delta)
