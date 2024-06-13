@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bts8lwcuvewnm"]
+[gd_scene load_steps=5 format=3 uid="uid://bts8lwcuvewnm"]
 
 [ext_resource type="PackedScene" uid="uid://bduf14chnme06" path="res://scenes/ui.tscn" id="1_ixjau"]
+[ext_resource type="PackedScene" uid="uid://bvu1evs1wrsek" path="res://scenes/enemy_spawner.tscn" id="2_lejxp"]
+[ext_resource type="PackedScene" uid="uid://d2lrg5vyr8bhv" path="res://scenes/player/player.tscn" id="2_p6nlp"]
 [ext_resource type="PackedScene" uid="uid://dr5ioa8ttwkth" path="res://scenes/world.tscn" id="3_g467k"]
 
 [node name="Main" type="Node2D"]
 
 [node name="UI" parent="." instance=ExtResource("1_ixjau")]
+
+[node name="Player" parent="." instance=ExtResource("2_p6nlp")]
+position = Vector2(326, 172)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("2_lejxp")]
 
 [node name="MapGenerator" parent="." instance=ExtResource("3_g467k")]

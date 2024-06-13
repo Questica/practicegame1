@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 DataHandler="*res://scripts/global/DataHandler.gd"
-Events="*res://scripts/global/events.gd"
 
 [display]
 
