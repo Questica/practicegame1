@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_85c57"]
 script = ExtResource("2_ov415")
 max_health = 10
-speed = 1
+speed = 10
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yeyt"]
 radius = 8.0
@@ -56,6 +56,7 @@ animations = [{
 }]
 
 [node name="EnemyTest" type="CharacterBody2D"]
+z_index = 5
 script = ExtResource("1_apaqq")
 stats = SubResource("Resource_85c57")
 
