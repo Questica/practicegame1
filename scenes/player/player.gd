@@ -4,33 +4,26 @@ extends CharacterBody2D
 
 @onready var world_tile_map = map_generator.get_node("WorldTileMap")
 
-var dirt = []
-var floor = []
-var cliff = []
+var moveCounter = 2
 
 func _ready():
-	iterate_world()
-	self.set_position((dirt[0] * 32) + Vector2(16, 16))
-	print(dirt[0] * 32)
+	self.set_position((map_generator.dirt[0] * 32) + Vector2i(16, 16))
 	PlayerSingleton.player = self
 
 func _input(event):
 	if Input.is_action_just_released("mouse_leftclick"):
 		var mouse_pos = get_global_mouse_position()
-		mouse_pos = Vector2i(floor(mouse_pos / 32))
-		print(mouse_pos)
-		var tile_data : TileData = world_tile_map.get_cell_tile_data(0, mouse_pos)
-		print(tile_data.get_terrain())
+		var tile = Vector2i(floor(mouse_pos / 32))
+		move(tile)
 
+func move(tile : Vector2i):
+	var tile_data : TileData = world_tile_map.get_cell_tile_data(0, tile)
+	if (tile_data.get_terrain() == 0 or tile_data.get_terrain() == 1) and tile_in_range(tile, moveCounter):
+		self.set_position((tile * 32) + Vector2i(16, 16))
 
-func iterate_world():  #This should probably not be in here.
-	for x in range(0, world_tile_map.get_used_rect().size.x):
-		for y in range(0, world_tile_map.get_used_rect().size.y):
-			var tile_data = world_tile_map.get_cell_tile_data(0, Vector2(x, y))
-			match tile_data.get_terrain():
-				0:
-					floor.append(Vector2(x, y))
-				1:
-					dirt.append(Vector2(x, y))
-				2:
-					cliff.append(Vector2(x, y))
+func tile_in_range(tile : Vector2i, range):
+	var self_position = Vector2i(floor(self.get_position())/ 32)
+	var distance = self_position - tile
+	if distance.length() <= range + .5:  #.5 allows for corners...
+		return true
+	return false
