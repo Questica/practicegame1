@@ -3,6 +3,8 @@ extends Node2D
 @onready var dirt_tilemap = $DirtTileMap
 @onready var wall_tilemap = $CliffTileMap
 @onready var floor_tilemap = $FloorTileMap
+@onready var world_tilemap = $WorldTileMap
+
 @onready var map_y = (height * 64) - 32
 @onready var map_x = (width * 64) - 32
 
@@ -196,10 +198,12 @@ func spawn_tiles():
 				Tiles.WALL:
 					walls.append(Vector2i(x, y))
 					#print("Placing wall tile at: %s, " % x, y)  # Debug print
-	floor_tilemap.set_cells_terrain_connect(0, floors, 0, 0)
-	dirt_tilemap.set_cells_terrain_connect(0, dirt, 0, 0, false)
-	wall_tilemap.set_cells_terrain_connect(0, walls, 0, 0)
-
+	#floor_tilemap.set_cells_terrain_connect(0, floors, 0, 0)
+	#dirt_tilemap.set_cells_terrain_connect(0, dirt, 0, 0, false)
+	#wall_tilemap.set_cells_terrain_connect(0, walls, 0, 0)
+	world_tilemap.set_cells_terrain_connect(0, floors, 0, 0)
+	world_tilemap.set_cells_terrain_connect(1, dirt, 0, 1, true)
+	world_tilemap.set_cells_terrain_connect(0, walls, 0, 2)
 func clear_tilemaps():
 	dirt_tilemap.clear()
 	wall_tilemap.clear()
