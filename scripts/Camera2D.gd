@@ -19,7 +19,7 @@ func _ready() -> void:
 	adjusted_limit_bottom = map_size[1] * 32 - (camera_size.y / 2)
 
 	# set the camera position, later we will intialize this to the player's starting position
-	position = PlayerSingleton.player.global_position
+	#position = PlayerSingleton.player.global_position
 
 func _process(delta):
 	key_pan(delta)

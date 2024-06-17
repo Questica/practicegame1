@@ -202,7 +202,7 @@ func spawn_tiles():
 	#dirt_tilemap.set_cells_terrain_connect(0, dirt, 0, 0, false)
 	#wall_tilemap.set_cells_terrain_connect(0, walls, 0, 0)
 	world_tilemap.set_cells_terrain_connect(0, floors, 0, 0)
-	world_tilemap.set_cells_terrain_connect(1, dirt, 0, 1, true)
+	world_tilemap.set_cells_terrain_connect(0, dirt, 0, 1)
 	world_tilemap.set_cells_terrain_connect(0, walls, 0, 2)
 func clear_tilemaps():
 	dirt_tilemap.clear()
