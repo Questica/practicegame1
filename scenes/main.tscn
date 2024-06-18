@@ -8,8 +8,6 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="UI" parent="." instance=ExtResource("1_ixjau")]
-
 [node name="MapGenerator" parent="." instance=ExtResource("3_g467k")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("map_generator") instance=ExtResource("2_p6nlp")]
@@ -18,3 +16,5 @@ script = ExtResource("3_uque6")
 map_generator = NodePath("../MapGenerator")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_lejxp")]
+
+[node name="UI" parent="." instance=ExtResource("1_ixjau")]

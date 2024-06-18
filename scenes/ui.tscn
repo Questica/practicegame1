@@ -14,25 +14,39 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.309804)
 
 [node name="MarginContainer" type="MarginContainer" parent="UIBarPlaceholder"]
-layout_direction = 3
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="InventoryButton" type="Button" parent="UIBarPlaceholder/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UIBarPlaceholder/MarginContainer"]
+layout_mode = 2
+
+[node name="InventoryButton" type="Button" parent="UIBarPlaceholder/MarginContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 text = "(I)nventory"
 
+[node name="Control" type="Control" parent="UIBarPlaceholder/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="Button" parent="UIBarPlaceholder/MarginContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Next"
+
 [node name="Inventory" parent="." instance=ExtResource("2_iixtr")]
 visible = false
-offset_left = 411.0
 offset_top = 91.0
-offset_right = 411.0
 offset_bottom = 91.0
 
-[connection signal="pressed" from="UIBarPlaceholder/MarginContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
-[connection signal="toggled" from="UIBarPlaceholder/MarginContainer/InventoryButton" to="." method="_on_inventory_button_toggled"]
+[connection signal="pressed" from="UIBarPlaceholder/MarginContainer/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="toggled" from="UIBarPlaceholder/MarginContainer/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_toggled"]
+[connection signal="pressed" from="UIBarPlaceholder/MarginContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
