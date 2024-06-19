@@ -9,6 +9,7 @@ var move_counter = move_counter_start
 func _ready():
 	self.set_position((map_generator.dirt[0] * 32) + Vector2i(16, 16))
 	PlayerSingleton.player = self
+	Engine.time_scale = 0.5
 
 func _input(event):
 	if Input.is_action_just_released("mouse_leftclick"):
@@ -40,7 +41,22 @@ func reset_move_counter():
 
 func next_turn():
 	if move_counter <= 0:
+		await slow_time()
 		reset_move_counter()
 		return true
 	return false
 	
+
+func slow_time():
+	var tween = get_tree().create_tween()
+	
+	#tween.set_speed_scale(1.0 / Engine.time_scale)
+	
+	# Speed up the time scale to 1.0 over 1 second
+	tween.tween_property(Engine, "time_scale", 1.0, 1.0).set_trans(Tween.TRANS_SINE)
+	
+	# Wait for 1 second
+	tween.tween_interval(1.0)
+	 
+	# Slow down the time scale back to 0.5 over 1 second
+	tween.tween_property(Engine, "time_scale", 0.5, 1.0).set_trans(Tween.TRANS_SINE)
