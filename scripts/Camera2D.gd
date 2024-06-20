@@ -28,13 +28,13 @@ func _process(delta):
 func key_pan(delta):
 	var pan_amount = Vector2.ZERO
 	if Input.is_action_pressed("arrow_right"):
-		pan_amount.x += 1
+		pan_amount.x += (1.0 / Engine.time_scale)
 	if Input.is_action_pressed("arrow_left"):
-		pan_amount.x -= 1
+		pan_amount.x -= (1.0 / Engine.time_scale)
 	if Input.is_action_pressed("arrow_down"):
-		pan_amount.y += 1
+		pan_amount.y += (1.0 / Engine.time_scale)
 	if Input.is_action_pressed("arrow_up"):
-		pan_amount.y -= 1
+		pan_amount.y -= (1.0 / Engine.time_scale)
 	
 	pan_amount = pan_amount.normalized()
 	var new_position = position + pan_amount * delta * speed
@@ -50,14 +50,14 @@ func mouse_pan(delta):
 	var pan_amount = Vector2.ZERO
 
 	if mouse_pos.x >= camera_size.x - edge_pan_margin:
-		pan_amount.x += 1
+		pan_amount.x += (1.0 / Engine.time_scale)
 	elif mouse_pos.x <= edge_pan_margin:
-		pan_amount.x -= 1
+		pan_amount.x -= (1.0 / Engine.time_scale)
 	
 	if mouse_pos.y >= camera_size.y - edge_pan_margin + 45:
-		pan_amount.y += 1
+		pan_amount.y += (1.0 / Engine.time_scale)
 	elif mouse_pos.y <= edge_pan_margin:
-		pan_amount.y -= 1
+		pan_amount.y -= (1.0 / Engine.time_scale)
 
 	pan_amount = pan_amount.normalized()
 	var new_position = position + pan_amount * delta * speed
