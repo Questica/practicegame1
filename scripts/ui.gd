@@ -2,6 +2,7 @@ extends CanvasLayer
 @onready var inventory = $Inventory
 @onready var inventory_button = $UIBarPlaceholder/MarginContainer/HBoxContainer/InventoryButton
 
+@onready var move_counter_label = $MoveCounterLabel
 
 func _ready() -> void:
 	print(PlayerSingleton.player)
@@ -27,3 +28,10 @@ func _on_inventory_button_toggled(button_pressed: bool) -> void:
 
 func _on_next_button_pressed():
 	PlayerSingleton.player.next_turn()
+	
+func _on_move_counter_changed(newNumber):
+	print("TEST")
+
+
+func _on_player_move_counter_changed(newNumber):
+	move_counter_label.text = "Moves Left: " + str(newNumber)

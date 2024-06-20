@@ -6,6 +6,9 @@ extends CharacterBody2D
 var move_counter_start = 4
 var move_counter = move_counter_start
 
+signal move_counter_changed(newNumber: int)
+
+
 func _ready():
 	self.set_position((map_generator.dirt[0] * 32) + Vector2i(16, 16))
 	PlayerSingleton.player = self
@@ -25,22 +28,26 @@ func move(tile : Vector2i):
 	var tile_distance = distance_from_tile(tile)
 	if tile_distance > 0 and move_counter - tile_distance >= 0:
 		self.set_position((tile * 32) + Vector2i(16, 16))
-		move_counter += - tile_distance
+		subtract_move_counter(tile_distance)
 
 func distance_from_tile(tile : Vector2i):
 	var self_position = Vector2i(floor(self.get_position())/ 32)
 	var distance = self_position - tile
 	return int(floor(distance.length()))
 
+func subtract_move_counter(number: int):
+	set_move_counter(move_counter-number)
+
 func set_move_counter(number: int):
 	move_counter = number
-	
+	move_counter_changed.emit(move_counter)
+
 func reset_move_counter():
-	move_counter = move_counter_start
+	set_move_counter(move_counter_start)
+
 
 func next_turn():
 	if move_counter <= 0:
 		reset_move_counter()
 		return true
 	return false
-	

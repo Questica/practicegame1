@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cr8rteqxcjyne"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cr8rteqxcjyne"]
 
 [ext_resource type="StyleBox" uid="uid://qnrr2s5l3tav" path="res://styles/menu.stylebox" id="1_jb5h5"]
 
@@ -12,6 +12,9 @@ border_color = Color(0, 0.329412, 0.419608, 1)
 bg_color = Color(0.376471, 0.835294, 1, 1)
 border_color = Color(0, 0.329412, 0.419608, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83jr6"]
+bg_color = Color(0, 0.698039, 0.596078, 1)
+
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
@@ -19,3 +22,5 @@ Button/styles/focus = SubResource("StyleBoxEmpty_gx5gh")
 Button/styles/hover = SubResource("StyleBoxFlat_oqyc7")
 Button/styles/normal = ExtResource("1_jb5h5")
 Button/styles/pressed = SubResource("StyleBoxFlat_qjvdq")
+GreenButton/base_type = &"Button"
+GreenButton/styles/normal = SubResource("StyleBoxFlat_83jr6")

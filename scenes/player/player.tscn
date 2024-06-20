@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2lrg5vyr8bhv"]
+[gd_scene load_steps=4 format=3 uid="uid://d2lrg5vyr8bhv"]
 
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_4o3f2"]
 [ext_resource type="Texture2D" uid="uid://bbx8d7vhqxgt3" path="res://assets/characters/playertest.png" id="1_jncty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmypk"]
@@ -7,6 +8,7 @@ size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
+script = ExtResource("1_4o3f2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nmypk")
@@ -15,3 +17,5 @@ shape = SubResource("RectangleShape2D_nmypk")
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("1_jncty")
+
+[connection signal="move_counter_changed" from="." to="." method="_on_move_counter_changed"]
