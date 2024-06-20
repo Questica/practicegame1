@@ -4,8 +4,13 @@ extends CanvasLayer
 
 @onready var move_counter_label = $MoveCounterLabel
 
+var player = null
+
 func _ready() -> void:
-	print(PlayerSingleton.player)
+	pass
+
+func _on_player_created():
+	player = PlayerSingleton.player
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("letter_i"):
@@ -25,13 +30,11 @@ func _on_inventory_button_toggled(button_pressed: bool) -> void:
 	else:
 		inventory.hide()
 
-
 func _on_next_button_pressed():
-	PlayerSingleton.player.next_turn()
-	
-func _on_move_counter_changed(newNumber):
-	print("TEST")
-
+	if not player:
+		push_error("No player hooked up to the UI")
+		return
+	player.next_turn()
 
 func _on_player_move_counter_changed(newNumber):
 	move_counter_label.text = "Moves Left: " + str(newNumber)

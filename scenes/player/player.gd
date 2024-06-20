@@ -7,11 +7,14 @@ var move_counter_start = 4
 var move_counter = move_counter_start
 
 signal move_counter_changed(newNumber: int)
+signal player_created()
 
 
 func _ready():
 	self.set_position((map_generator.dirt[0] * 32) + Vector2i(16, 16))
 	PlayerSingleton.player = self
+	player_created.emit()
+	move_counter_changed.emit(move_counter_start)
 	Engine.time_scale = 0.5
 
 func _input(event):
@@ -68,3 +71,7 @@ func slow_time():
 	 
 	# Slow down the time scale back to 0.5 over 1 second
 	tween.tween_property(Engine, "time_scale", 0.5, 1.0).set_trans(Tween.TRANS_SINE)
+
+
+func _on_player_created():
+	pass # Replace with function body.

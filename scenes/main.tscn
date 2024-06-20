@@ -9,12 +9,13 @@
 
 [node name="MapGenerator" parent="." instance=ExtResource("3_g467k")]
 
+[node name="UI" parent="." instance=ExtResource("1_ixjau")]
+
 [node name="Player" parent="." node_paths=PackedStringArray("map_generator") instance=ExtResource("2_p6nlp")]
 position = Vector2(624, 304)
 map_generator = NodePath("../MapGenerator")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_lejxp")]
 
-[node name="UI" parent="." instance=ExtResource("1_ixjau")]
-
 [connection signal="move_counter_changed" from="Player" to="UI" method="_on_player_move_counter_changed"]
+[connection signal="player_created" from="Player" to="UI" method="_on_player_created"]

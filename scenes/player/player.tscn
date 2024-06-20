@@ -17,5 +17,3 @@ shape = SubResource("RectangleShape2D_nmypk")
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("1_jncty")
-
-[connection signal="move_counter_changed" from="." to="." method="_on_move_counter_changed"]
