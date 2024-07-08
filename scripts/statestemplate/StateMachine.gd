@@ -14,16 +14,16 @@ func _ready():
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
 	if initial_state:
-		initial_state.Enter()
+		initial_state.enter()
 		current_state = initial_state
 
 func _process(delta):
 	if current_state:
-		current_state.Update(delta)
+		current_state.process(delta)
 
 func _physics_process(delta):
 	if current_state:
-		current_state.Physics_Update(delta)
+		current_state.physics_process(delta)
 
 func on_child_transition(state, new_state_name, args=null):
 	if player.move_counter <= 0 and new_state_name != "playerIdle":
@@ -34,11 +34,11 @@ func on_child_transition(state, new_state_name, args=null):
 	if !new_state or new_state == state:
 		return
 	if current_state:
-		current_state.Exit()
+		current_state.exit()
 	if args:
-		new_state.Enter(args)
+		new_state.enter(args)
 	else:
-		new_state.Enter()
+		new_state.enter()
 	current_state = new_state
 	
 	StateMachineTransitioned.emit(new_state)

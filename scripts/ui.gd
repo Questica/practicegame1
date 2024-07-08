@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var future_time_scale_label = $FutureTimeScaleLabel
 
 var player = null
+var tilebox = null
 
 func _ready() -> void:
 	pass

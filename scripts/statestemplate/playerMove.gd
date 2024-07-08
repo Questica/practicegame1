@@ -6,20 +6,19 @@ class_name playerMove
 
 var move_tween : Tween
 
-func Enter(args=null):
+func enter(args=null):
 	if args == null:
 		return
 	move(args)
 
-func Update(delta: float):
+func process(delta: float):
 	pass
 
-func Physics_Update(delta: float):
+func physics_process(delta: float):
 	if player:
 		print("physics update")
 
 func move(tile : Vector2i):
-	#if player.move_counter > 0:
 	var tile_distance = distance_from_tile(tile)
 	if tile_distance == 1:
 		var pos = Vector2(tile) * 32 + Vector2(16, 16)
@@ -36,7 +35,10 @@ func _on_tween_completed():
 	Transitioned.emit(self, "playerIdle")
 
 func mouse_down(tile):
+	return null
+
+func exit():
 	pass
 
-func Exit():
+func hover(tile):
 	pass

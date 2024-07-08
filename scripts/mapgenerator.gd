@@ -12,7 +12,7 @@ extends Node2D
 @export var width : int
 
 var rng = RandomNumberGenerator.new()
-
+var tilebox = null
 const cell_size = Vector2(32, 32)
 
 var grid = []
@@ -210,10 +210,13 @@ func clear_tilemaps():
 
 func _draw():
 	for x in floors:
-		draw_box(x)
+		draw_box(x, Color.WHITE_SMOKE)
 	for x in dirt:
-		draw_box(x)
-
+		draw_box(x, Color.WHITE_SMOKE)
+	if tilebox:
+		#draw_rect(tilebox.rect, tilebox.color)
+		draw_box(tilebox.rect.position, tilebox.color)
+		print("helo")
 #func draw_grid():
 	## Draw vertical lines for the grid
 	#for x in grid_size.x + 1:
@@ -245,35 +248,35 @@ func generate_map():
 	remove_diagonals(Tiles.DIRT)
 	spawn_tiles()
 
-func draw_box(box: Vector2):
+func draw_box(box: Vector2, color: Color):
 	var x = box[0] * cell_size.x
 	var y = box[1] * cell_size.y
 	#TOP LINE
 	draw_line(
 		Vector2(x, y),  # Start point of the line
 		Vector2(x + cell_size.x, y),  # End point of the line
-		Color.WHITE_SMOKE,  # Color of the line
+		color,  # Color of the line
 		2.0  # Thickness of the line
 	)
 	#RIGHT LINE
 	draw_line(
 		Vector2(x + cell_size.x, y),  # Start point of the line
 		Vector2(x + cell_size.x, cell_size.y + y),  # End point of the line
-		Color.WHITE_SMOKE,  # Color of the line
+		color,  # Color of the line
 		2.0  # Thickness of the line
 	)
 	#BOTTOM LINE
 	draw_line(
 		Vector2(x, y + cell_size.y),  # Start point of the line
 		Vector2(x + cell_size.x, y + cell_size.y),  # End point of the line
-		Color.WHITE_SMOKE,  # Color of the line
+		color,  # Color of the line
 		2.0  # Thickness of the line
 	)
 	#LEFT LINE
 	draw_line(
 		Vector2(x, y),  # Start point of the line
 		Vector2(x, cell_size.y + y),  # End point of the line
-		Color.WHITE_SMOKE,  # Color of the line
+		color,  # Color of the line
 		2.0  # Thickness of the line
 	)
 

@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
 @export var map_generator: Node
-@onready var world_tile_map = map_generator.get_node("WorldTileMap")
-
 @onready var player_state_machine = get_node("PlayerStateMachine")
 
 #@onready var move_tween = create_tween()
@@ -14,6 +12,7 @@ signal move_counter_changed(newNumber: int)
 signal player_created()
 signal time_scale_changed(scale: int)
 
+var tilebox
 
 func _ready():
 	Engine.time_scale = 0.5
@@ -23,10 +22,22 @@ func _ready():
 	move_counter_changed.emit(move_counter_start)
 
 func _input(event):
+	if move_counter <= 0:
+		return
+	var mouse_pos = get_global_mouse_position()
+	var tile = Vector2i(floor(mouse_pos / 32))
 	if Input.is_action_just_released("mouse_leftclick"):
-		var mouse_pos = get_global_mouse_position()
-		var tile = Vector2i(floor(mouse_pos / 32))
-		player_state_machine.get_current_state().mouse_down(tile)
+		var mods = player_state_machine.get_current_state().mouse_down(tile)
+		if mods and mods.tilebox:
+			tilebox = { "rect": Rect2(tile, Vector2(32, 32)), "color": mods.tilebox }
+			map_generator.tilebox = tilebox
+			map_generator.queue_redraw()
+	var mods = player_state_machine.get_current_state().hover(tile)
+	if mods and mods.tilebox:
+		tilebox = { "rect": Rect2(tile, Vector2(32, 32)), "color": mods.tilebox }
+		map_generator.tilebox = tilebox
+		map_generator.queue_redraw()
+	
 
 func subtract_move_counter(number: int):
 	set_move_counter(move_counter-number)
@@ -65,3 +76,7 @@ func _on_player_state_machine_state_machine_transitioned(new_state : State):
 	if new_state.name.to_lower() == "playeridle":
 		return
 	subtract_move_counter(1)
+
+#func _draw():
+	#if tilebox:
+		#draw_rect(tilebox.rect, tilebox.color)
