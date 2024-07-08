@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 @export var map_generator: Node
-
 @onready var world_tile_map = map_generator.get_node("WorldTileMap")
+
+@onready var player_state_machine = get_node("PlayerStateMachine")
 
 #@onready var move_tween = create_tween()
 var move_counter_start = 4
@@ -25,28 +26,7 @@ func _input(event):
 	if Input.is_action_just_released("mouse_leftclick"):
 		var mouse_pos = get_global_mouse_position()
 		var tile = Vector2i(floor(mouse_pos / 32))
-		move(tile)
-
-func move(tile : Vector2i):
-	if move_tween and move_tween.is_running():
-		return
-	var tile_data : TileData = world_tile_map.get_cell_tile_data(0, tile)
-	if (tile_data.get_terrain() == 2):
-		return
-	if (move_counter <= 0):
-		return
-	var tile_distance = distance_from_tile(tile)
-	if tile_distance > 0 and move_counter - tile_distance >= 0:
-		#self.set_position((tile * 32) + Vector2i(16, 16))
-		var pos = Vector2(tile) * 32 + Vector2(16, 16)
-		move_tween = create_tween()
-		move_tween.tween_property(self, "position", pos, 0.5)
-		subtract_move_counter(tile_distance)
-
-func distance_from_tile(tile : Vector2i):
-	var self_position = Vector2i(floor(self.get_position())/ 32)
-	var distance = self_position - tile
-	return int(floor(distance.length()))
+		player_state_machine.get_current_state().mouse_down(tile)
 
 func subtract_move_counter(number: int):
 	set_move_counter(move_counter-number)
@@ -58,14 +38,12 @@ func set_move_counter(number: int):
 func reset_move_counter():
 	set_move_counter(move_counter_start)
 
-
 func next_turn():
 	if move_counter <= 0:
 		await slow_time()
 		reset_move_counter()
 		return true
 	return false
-	
 
 func slow_time():
 	var number = RandomNumberGenerator.new().randf_range(.5, 5)
@@ -83,5 +61,7 @@ func slow_time():
 	#time_scale_changed.emit(0.5)
 
 
-func _on_player_created():
-	pass # Replace with function body.
+func _on_player_state_machine_state_machine_transitioned(new_state : State):
+	if new_state.name.to_lower() == "playeridle":
+		return
+	subtract_move_counter(1)

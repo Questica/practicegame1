@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2lrg5vyr8bhv"]
+[gd_scene load_steps=7 format=3 uid="uid://d2lrg5vyr8bhv"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_4o3f2"]
 [ext_resource type="Texture2D" uid="uid://bbx8d7vhqxgt3" path="res://assets/characters/playertest.png" id="1_jncty"]
+[ext_resource type="Script" path="res://scripts/statestemplate/StateMachine.gd" id="3_pnmym"]
+[ext_resource type="Script" path="res://scripts/statestemplate/playerIdle.gd" id="4_pps1f"]
+[ext_resource type="Script" path="res://scripts/statestemplate/playerMove.gd" id="5_abefv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmypk"]
 size = Vector2(16, 16)
@@ -17,3 +20,20 @@ shape = SubResource("RectangleShape2D_nmypk")
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("1_jncty")
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("3_pnmym")
+initial_state = NodePath("playerIdle")
+player = NodePath("..")
+
+[node name="playerIdle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player", "playerSprite")]
+script = ExtResource("4_pps1f")
+player = NodePath("../..")
+playerSprite = NodePath("../../Sprite2D")
+
+[node name="playerMove" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player", "playerSprite")]
+script = ExtResource("5_abefv")
+player = NodePath("../..")
+playerSprite = NodePath("../../Sprite2D")
+
+[connection signal="StateMachineTransitioned" from="PlayerStateMachine" to="." method="_on_player_state_machine_state_machine_transitioned"]
