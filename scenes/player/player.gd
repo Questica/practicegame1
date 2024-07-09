@@ -21,23 +21,27 @@ func _ready():
 	player_created.emit()
 	move_counter_changed.emit(move_counter_start)
 
-func _input(event):
-	if move_counter <= 0:
-		return
+#func _input(event):
+	#if move_counter <= 0:
+		#return
+	#var mouse_pos = get_global_mouse_position()
+	#var tile = Vector2i(floor(mouse_pos / 32))
+	#var mods = player_state_machine.get_current_state().hover(tile)
+	#if mods and mods.tilebox:
+		#tilebox = { "rect": Rect2(tile, Vector2(32, 32)), "color": mods.tilebox }
+		#map_generator.tilebox = tilebox
+		#map_generator.queue_redraw()
+	#if Input.is_action_just_released("mouse_leftclick"):
+		#mods = player_state_machine.get_current_state().mouse_down(tile)
+		#if mods and mods.tilebox:
+			#tilebox = { "rect": Rect2(tile, Vector2(32, 32)), "color": mods.tilebox }
+			#map_generator.tilebox = tilebox
+			#map_generator.queue_redraw()
+
+func get_tile_position_at_mouse():
 	var mouse_pos = get_global_mouse_position()
-	var tile = Vector2i(floor(mouse_pos / 32))
-	if Input.is_action_just_released("mouse_leftclick"):
-		var mods = player_state_machine.get_current_state().mouse_down(tile)
-		if mods and mods.tilebox:
-			tilebox = { "rect": Rect2(tile, Vector2(32, 32)), "color": mods.tilebox }
-			map_generator.tilebox = tilebox
-			map_generator.queue_redraw()
-	var mods = player_state_machine.get_current_state().hover(tile)
-	if mods and mods.tilebox:
-		tilebox = { "rect": Rect2(tile, Vector2(32, 32)), "color": mods.tilebox }
-		map_generator.tilebox = tilebox
-		map_generator.queue_redraw()
-	
+	var tile_position = Vector2i(floor(mouse_pos / 32))
+	return tile_position
 
 func subtract_move_counter(number: int):
 	set_move_counter(move_counter-number)
@@ -58,7 +62,7 @@ func next_turn():
 
 func slow_time():
 	var number = RandomNumberGenerator.new().randf_range(.5, 5)
-	print(number)
+	#print(number)
 	
 	var tween = get_tree().create_tween()
 	#tween.set_speed_scale(1.0 / Engine.time_scale)
@@ -77,6 +81,8 @@ func _on_player_state_machine_state_machine_transitioned(new_state : State):
 		return
 	subtract_move_counter(1)
 
-#func _draw():
-	#if tilebox:
-		#draw_rect(tilebox.rect, tilebox.color)
+func hover(tile_position, tile):
+	return player_state_machine.get_current_state().hover(tile_position, tile)
+
+func mouse_down(tile_position, tile):
+	return player_state_machine.get_current_state().mouse_down(tile_position, tile)

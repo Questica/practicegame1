@@ -7,6 +7,7 @@ var states : Dictionary = {}
 var current_state : State
 
 signal StateMachineTransitioned
+signal UIUpdate
 
 func _ready():
 	for child in get_children():

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bts8lwcuvewnm"]
+[gd_scene load_steps=6 format=3 uid="uid://bts8lwcuvewnm"]
 
 [ext_resource type="PackedScene" uid="uid://bduf14chnme06" path="res://scenes/ui.tscn" id="1_ixjau"]
 [ext_resource type="PackedScene" uid="uid://bvu1evs1wrsek" path="res://scenes/enemy_spawner.tscn" id="2_lejxp"]
 [ext_resource type="PackedScene" uid="uid://d2lrg5vyr8bhv" path="res://scenes/player/player.tscn" id="2_p6nlp"]
 [ext_resource type="PackedScene" uid="uid://dr5ioa8ttwkth" path="res://scenes/world.tscn" id="3_g467k"]
+[ext_resource type="Script" path="res://scripts/playermapcontroller.gd" id="5_mdamd"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,6 +17,11 @@ position = Vector2(624, 304)
 map_generator = NodePath("../MapGenerator")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_lejxp")]
+
+[node name="PlayerMapController" type="Node" parent="." node_paths=PackedStringArray("player", "map_generator")]
+script = ExtResource("5_mdamd")
+player = NodePath("../Player")
+map_generator = NodePath("../MapGenerator")
 
 [connection signal="move_counter_changed" from="Player" to="UI" method="_on_player_move_counter_changed"]
 [connection signal="player_created" from="Player" to="UI" method="_on_player_created"]

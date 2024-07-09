@@ -12,7 +12,7 @@ extends Node2D
 @export var width : int
 
 var rng = RandomNumberGenerator.new()
-var tilebox = null
+var box = null
 const cell_size = Vector2(32, 32)
 
 var grid = []
@@ -213,10 +213,10 @@ func _draw():
 		draw_box(x, Color.WHITE_SMOKE)
 	for x in dirt:
 		draw_box(x, Color.WHITE_SMOKE)
-	if tilebox:
+	if box:
 		#draw_rect(tilebox.rect, tilebox.color)
-		draw_box(tilebox.rect.position, tilebox.color)
-		print("helo")
+		draw_box(box.rect.position, box.color)
+		#print("helo")
 #func draw_grid():
 	## Draw vertical lines for the grid
 	#for x in grid_size.x + 1:
@@ -288,3 +288,10 @@ func _ready():
 
 func camera_setup() -> Vector2:
 	return Vector2(width, height)
+
+func get_tile_at_position(tile_position):
+	if tile_position in dirt:
+		return Tiles.DIRT
+	if tile_position in floors:
+		return Tiles.FLOOR
+	return Tiles.WALL

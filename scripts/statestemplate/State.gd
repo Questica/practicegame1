@@ -14,6 +14,3 @@ func physics_process(_delta: float):
 
 func exit():
 	pass
-
-func mouse_down(tile):
-	pass

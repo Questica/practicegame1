@@ -6,22 +6,23 @@ class_name playerMove
 
 var move_tween : Tween
 
-func enter(args=null):
-	if args == null:
-		return
-	move(args)
+func enter(args: Dictionary = {}):
+	if args.tile_position == null or args.tile == null:
+		return 
+	move(args.tile_position, args.tile)
 
 func process(delta: float):
 	pass
 
 func physics_process(delta: float):
 	if player:
-		print("physics update")
+		#print("physics update")
+		pass
 
-func move(tile : Vector2i):
-	var tile_distance = distance_from_tile(tile)
+func move(tile_position : Vector2i, tile):
+	var tile_distance = distance_from_tile(tile_position)
 	if tile_distance == 1:
-		var pos = Vector2(tile) * 32 + Vector2(16, 16)
+		var pos = Vector2(tile_position) * 32 + Vector2(16, 16)
 		move_tween = create_tween()
 		move_tween.tween_property(player, "position", pos, 0.5)
 		move_tween.tween_callback(_on_tween_completed)
@@ -34,11 +35,11 @@ func distance_from_tile(tile : Vector2i):
 func _on_tween_completed():
 	Transitioned.emit(self, "playerIdle")
 
-func mouse_down(tile):
+func mouse_down(tile_position, tile):
 	return null
 
 func exit():
 	pass
 
-func hover(tile):
+func hover(tile_position, tile):
 	pass
